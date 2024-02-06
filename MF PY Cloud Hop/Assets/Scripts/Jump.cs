@@ -7,37 +7,32 @@ public class Jump : MonoBehaviour
 {
     Rigidbody2D rigidBody;
 
-    public float speed;
+    public bool canJump;
 
-    float masterSpeed;
+    float jumpForce = 15;
 
     void Start()
     {
         rigidBody = GetComponent<Rigidbody2D>();
-
-        masterSpeed = speed;
     }
 
-
-    void FixedUpdate()
+    void Update()
     {
-        //get right/left input information
-        float horizontal = Input.GetAxis("Horizontal");
-
-        //get vertical velocity
-        float verticalMovement = rigidBody.velocity.y;
-        //if player is in the air, decrease speed
-        if (verticalMovement != 0)
+        if(rigidBody.velocity.y == 0)
         {
-            speed = masterSpeed / 2f;
+            canJump = true;
         }
         else
         {
-            speed = masterSpeed;
+            canJump = false;
         }
 
-        //move player left and right according to user input and speed
-        transform.position += new Vector3(horizontal, 0) * Time.deltaTime * speed;
+        if (canJump && Input.GetButtonDown("Jump"))
+        {
+            rigidBody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        }
+
     }
+    
 }
 

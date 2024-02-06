@@ -34,10 +34,6 @@ public class Movement : MonoBehaviour
         if(horizontal > 0 && transform.position.x <= 6.5f){
             transform.position += new Vector3(horizontal, 0) * Time.deltaTime * speed;
         }
-        if (vertical > 0)
-        {
-            rigidBody.AddForce(Vector2.up * 1, ForceMode2D.Impulse);
-        }
 
         //get vertical velocity
         float verticalMovement = rigidBody.velocity.y;
