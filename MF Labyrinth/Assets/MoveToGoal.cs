@@ -5,7 +5,7 @@ using UnityEngine.AI;
 
 public class MoveToGoal : MonoBehaviour
 {
-    public Transform goal;
+    public Transform goal;                                  
     private Animator animator;
     private NavMeshAgent agent;
     public Transform sphere;
